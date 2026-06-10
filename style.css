@@ -342,4 +342,30 @@ mark {
     .hymn-card-title { font-size: 1.1rem; }
     #app { padding: 1rem .75rem 3rem; }
     .hymn-pos { display: none; }
+
+    /* Navegação do hino: empilha em duas linhas */
+    .hymn-nav {
+        flex-direction: column;
+        align-items: stretch;
+        gap: .4rem;
+    }
+
+    .nav-left,
+    .nav-arrows {
+        display: flex;
+        gap: .3rem;
+        width: 100%;
+    }
+
+    /* Sumário ocupa espaço disponível; A− e A+ ficam fixos */
+    .nav-left .btn:first-child { flex: 1; }
+
+    /* Anterior e Próximo dividem a linha igualmente */
+    .nav-arrows .btn { flex: 1; text-align: center; justify-content: center; }
+
+    /* Botões ligeiramente menores no mobile */
+    .btn { font-size: .82rem; padding: .42rem .6rem; }
+
+    /* Lista do sumário: número menor */
+    .hymn-num { min-width: 2rem; font-size: .78rem; }
 }
