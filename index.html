@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hinário Junco — Navegue pelos hinos">
+    <title>Hinário Junco</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <button class="logo" id="btn-home">Hinário Junco</button>
+            <div class="header-controls">
+                <button class="btn-icon" id="btn-theme" title="Alternar tema">☀️</button>
+            </div>
+        </div>
+        <div class="search-container">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input
+                type="search"
+                id="search-input"
+                placeholder="Buscar por número, título ou palavras..."
+                autocomplete="off"
+                aria-label="Buscar hinos"
+            >
+        </div>
+    </header>
+
+    <main id="app">
+        <div class="loading-state"><p>Carregando hinário...</p></div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
