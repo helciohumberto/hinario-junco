@@ -105,9 +105,16 @@ button.logo {
 button.logo:hover { opacity: .8; }
 
 .logo-img {
-    height: 2rem;
+    height: 2.2rem;
     width: auto;
     display: block;
+    filter: brightness(0);
+    opacity: .85;
+}
+
+[data-theme="dark"] .logo-img {
+    filter: brightness(0) invert(1);
+    opacity: .9;
 }
 
 .header-controls { display: flex; gap: .35rem; }
@@ -325,9 +332,9 @@ mark {
 /* Card do hino */
 .hymn-card {
     background: var(--surface);
-    border-radius: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
     padding: 2rem 2.25rem;
-    box-shadow: var(--shadow);
 }
 
 .hymn-card-title {
@@ -336,7 +343,7 @@ mark {
     color: var(--primary);
     margin-bottom: 1.25rem;
     padding-bottom: .6rem;
-    border-bottom: 2px solid var(--border);
+    border-bottom: 1px solid var(--border);
 }
 
 .hymn-body { font-size: var(--hymn-font, 1rem); line-height: 2; }
