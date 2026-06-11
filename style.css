@@ -382,6 +382,13 @@ mark {
     /* Anterior e Próximo dividem a linha igualmente */
     .nav-arrows .btn { flex: 1; text-align: center; justify-content: center; }
 
+    /* Menu de cima: Anterior/Próximo acima, Sumário/A−/A+ abaixo */
+    .hymn-nav--top .nav-arrows { order: 0; }
+    .hymn-nav--top .nav-left   { order: 1; }
+
+    /* A− e A+ ficam no canto direito, Sumário no esquerdo */
+    .nav-left .js-font-dec { margin-left: auto; }
+
     /* Botões ligeiramente menores no mobile */
     .btn { font-size: .82rem; padding: .42rem .6rem; }
 

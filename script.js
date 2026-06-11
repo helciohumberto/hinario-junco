@@ -160,7 +160,7 @@ function renderHymn(id) {
 
     // Barra de navegação (reutilizada no topo e no rodapé)
     const nav = (showPos) => `
-        <nav class="hymn-nav">
+        <nav class="hymn-nav${showPos ? ' hymn-nav--top' : ''}">
             <div class="nav-left">
                 <a href="#" class="btn">← Sumário</a>
                 <button class="btn js-font-dec" title="Diminuir fonte"${atMin ? ' disabled' : ''}>A−</button>
