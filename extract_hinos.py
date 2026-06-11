@@ -103,6 +103,10 @@ def clean(raw):
         # Descarta resíduos numéricos que porventura escaparam
         if re.match(r'^\d{1,4}$', s):
             continue
+        # Rótulo de coro/refrão sempre inicia estrofe nova (a quebra se perde
+        # quando coincide com a quebra de página do PDF)
+        if out and out[-1] != '' and re.match(r'^(coro|refr[aã]o)\b', normalize(s)):
+            out.append('')
         out.append(s)
     text = '\n'.join(out)
     text = re.sub(r'\n{3,}', '\n\n', text)
