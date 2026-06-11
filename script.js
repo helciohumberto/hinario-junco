@@ -4,7 +4,7 @@
 const state = {
     hymns: [],       // array carregado de hinos.json
     fontLevel: 0,    // -3 … +5 passos de 2px
-    theme: 'dark',
+    theme: 'light',
     query: '',
 };
 
@@ -237,7 +237,7 @@ function handleSearch(e) {
 // ─── Inicialização ────────────────────────────────────────────────────────────
 async function init() {
     // Restaura preferências salvas
-    applyTheme(localStorage.getItem('hinario-theme') || 'dark');
+    applyTheme(localStorage.getItem('hinario-theme') || 'light');
     applyFont(parseInt(localStorage.getItem('hinario-font') || '0', 10));
 
     // Botão home (logo)
