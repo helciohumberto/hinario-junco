@@ -91,9 +91,18 @@ button.logo {
     letter-spacing: .03em;
     cursor: pointer;
     padding: 0;
+    display: flex;
+    align-items: center;
+    gap: .45rem;
     transition: opacity .15s;
 }
 button.logo:hover { opacity: .8; }
+
+.logo-img {
+    height: 2rem;
+    width: auto;
+    display: block;
+}
 
 .header-controls { display: flex; gap: .35rem; }
 
