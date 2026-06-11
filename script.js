@@ -159,33 +159,21 @@ function renderHymn(id) {
     const atMax = state.fontLevel >= FONT_MAX;
 
     // Barra de navegação (reutilizada no topo e no rodapé)
-    const navArrows = `
+    const nav = (showPos) => `
+        <nav class="hymn-nav">
+            <div class="nav-left">
+                <a href="#" class="btn">← Sumário</a>
                 <button class="btn js-font-dec" title="Diminuir fonte"${atMin ? ' disabled' : ''}>A−</button>
                 <button class="btn js-font-inc" title="Aumentar fonte"${atMax ? ' disabled' : ''}>A+</button>
+            </div>
+            ${showPos ? `<span class="hymn-pos">${pos}</span>` : '<span></span>'}
+            <div class="nav-arrows">
                 ${prev
                     ? `<a href="#${prev.id}" class="btn" title="${esc(prev.title)}">‹ Anterior</a>`
                     : `<button class="btn" disabled>‹ Anterior</button>`}
                 ${next
                     ? `<a href="#${next.id}" class="btn btn-primary" title="${esc(next.title)}">Próximo ›</a>`
-                    : `<button class="btn" disabled>Próximo ›</button>`}`;
-
-    // Topo: nav-arrows vem primeiro no DOM (mobile: Anterior/Próximo aparece em cima)
-    // Baixo: nav-left vem primeiro (layout normal)
-    const nav = (showPos) => showPos ? `
-        <nav class="hymn-nav hymn-nav--top">
-            <div class="nav-arrows">${navArrows}
-            </div>
-            <span class="hymn-pos">${pos}</span>
-            <div class="nav-left">
-                <a href="#" class="btn">← Sumário</a>
-            </div>
-        </nav>` : `
-        <nav class="hymn-nav">
-            <div class="nav-left">
-                <a href="#" class="btn">← Sumário</a>
-            </div>
-            <span></span>
-            <div class="nav-arrows">${navArrows}
+                    : `<button class="btn" disabled>Próximo ›</button>`}
             </div>
         </nav>`;
 

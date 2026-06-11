@@ -295,13 +295,6 @@ mark {
 .nav-left   { display: flex; gap: .35rem; }
 .nav-arrows { display: flex; gap: .35rem; }
 
-/* No topo, DOM tem nav-arrows primeiro; reordena visualmente no desktop */
-@media (min-width: 581px) {
-    .hymn-nav--top .nav-left   { order: 0; }
-    .hymn-nav--top .hymn-pos   { order: 1; }
-    .hymn-nav--top .nav-arrows { order: 2; }
-}
-
 .btn {
     display: inline-flex;
     align-items: center;
@@ -386,10 +379,8 @@ mark {
         width: 100%;
     }
 
-    /* Anterior e Próximo dividem a linha igualmente; fonte fica compacta */
+    /* Anterior e Próximo dividem a linha igualmente */
     .nav-arrows .btn { flex: 1; text-align: center; justify-content: center; }
-    .nav-arrows .js-font-dec,
-    .nav-arrows .js-font-inc { flex: none; }
 
     /* Botões ligeiramente menores no mobile */
     .btn { font-size: .82rem; padding: .42rem .6rem; }
