@@ -1,6 +1,3 @@
-/* ═══════════════════════════════════════════
-   Tokens & Themes
-   ═══════════════════════════════════════════ */
 :root {
     --font-size: 16px;
 
@@ -49,9 +46,6 @@
     --shadow:      0 1px 0 var(--border);
 }
 
-/* ═══════════════════════════════════════════
-   Reset & Base
-   ═══════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { font-size: 16px; scroll-behavior: smooth; }
@@ -67,9 +61,6 @@ body {
 
 a { color: inherit; }
 
-/* ═══════════════════════════════════════════
-   Header
-   ═══════════════════════════════════════════ */
 header {
     position: sticky;
     top: 0;
@@ -134,7 +125,6 @@ button.logo:hover { opacity: .8; }
 .btn-icon:hover:not(:disabled) { background: var(--header-el-hover); }
 .btn-icon:disabled { opacity: .35; cursor: not-allowed; }
 
-/* Search */
 .search-container { position: relative; }
 
 .search-icon {
@@ -163,18 +153,12 @@ button.logo:hover { opacity: .8; }
 #search-input:focus { background: var(--surface); border-color: var(--text-muted); }
 #search-input::-webkit-search-cancel-button { display: none; }
 
-/* ═══════════════════════════════════════════
-   Main container
-   ═══════════════════════════════════════════ */
 #app {
     max-width: 740px;
     margin: 0 auto;
     padding: 1.4rem 1rem 3rem;
 }
 
-/* ═══════════════════════════════════════════
-   States (loading / setup / error)
-   ═══════════════════════════════════════════ */
 .loading-state,
 .setup-state,
 .error-state {
@@ -209,9 +193,6 @@ button.logo:hover { opacity: .8; }
 
 .setup-state p { margin-bottom: .5rem; }
 
-/* ═══════════════════════════════════════════
-   Index / Sumário
-   ═══════════════════════════════════════════ */
 .index-header {
     display: flex;
     align-items: baseline;
@@ -274,9 +255,6 @@ mark {
     padding: 0 2px;
 }
 
-/* ═══════════════════════════════════════════
-   Hymn view
-   ═══════════════════════════════════════════ */
 .hymn-nav {
     display: flex;
     justify-content: space-between;
@@ -329,7 +307,6 @@ mark {
     color: var(--primary-fg);
 }
 
-/* Card do hino */
 .hymn-card {
     background: var(--surface);
     border-radius: 6px;
@@ -356,16 +333,12 @@ mark {
     margin-top: 2em;
 }
 
-/* ═══════════════════════════════════════════
-   Responsivo
-   ═══════════════════════════════════════════ */
 @media (max-width: 580px) {
     .hymn-card { padding: 1.2rem 1rem; }
     .hymn-card-title { font-size: 1.1rem; }
     #app { padding: 1rem .75rem 3rem; }
     .hymn-pos { display: none; }
 
-    /* Navegação do hino: empilha em duas linhas */
     .hymn-nav {
         flex-direction: column;
         align-items: stretch;
@@ -379,19 +352,14 @@ mark {
         width: 100%;
     }
 
-    /* Anterior e Próximo dividem a linha igualmente */
     .nav-arrows .btn { flex: 1; text-align: center; justify-content: center; }
 
-    /* Menu de cima: Anterior/Próximo acima, Sumário/A−/A+ abaixo */
     .hymn-nav--top .nav-arrows { order: 0; }
     .hymn-nav--top .nav-left   { order: 1; }
 
-    /* A− e A+ ficam no canto direito, Sumário no esquerdo */
     .nav-left .js-font-dec { margin-left: auto; }
 
-    /* Botões ligeiramente menores no mobile */
     .btn { font-size: .82rem; padding: .42rem .6rem; }
 
-    /* Lista do sumário: número menor */
     .hymn-num { min-width: 2rem; font-size: .78rem; }
 }

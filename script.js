@@ -1,9 +1,8 @@
 'use strict';
 
-// ─── Estado ───────────────────────────────────────────────────────────────────
 const state = {
-    hymns: [],       // array carregado de hinos.json
-    fontLevel: 0,    // -3 … +5 passos de 2px
+    hymns: [],
+    fontLevel: 0,
     theme: 'light',
     query: '',
 };
@@ -13,7 +12,6 @@ const FONT_STEP = 2;
 const FONT_MIN  = -3;
 const FONT_MAX  = 5;
 
-// ─── Utilitários ──────────────────────────────────────────────────────────────
 function esc(str) {
     return String(str)
         .replace(/&/g, '&amp;')
@@ -29,7 +27,6 @@ function normalize(str) {
         .toLowerCase();
 }
 
-// Destaca ocorrências de `query` dentro de `text` (case/accent-insensitive)
 function highlight(text, query) {
     if (!query) return esc(text);
     const nt = normalize(text);
@@ -46,8 +43,6 @@ function highlight(text, query) {
     return out;
 }
 
-// ─── Renderizador de conteúdo ─────────────────────────────────────────────────
-// Linhas em branco → novo parágrafo. Todo o resto (incluindo CORO:) é texto normal.
 function renderContent(content) {
     const lines = content.split('\n');
     let html = '';
@@ -71,14 +66,12 @@ function renderContent(content) {
     return html;
 }
 
-// ─── Dados ────────────────────────────────────────────────────────────────────
 async function loadHymns() {
     const resp = await fetch('hinos.json');
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     return resp.json();
 }
 
-// ─── Views ────────────────────────────────────────────────────────────────────
 const $app = () => document.getElementById('app');
 
 function showLoading(msg = 'Carregando...') {
@@ -99,7 +92,6 @@ python extract_hinos.py "Hinário Junco.pdf"</pre>
         </div>`;
 }
 
-// Renderiza a lista completa (ou filtrada por busca)
 function renderIndex(query = '') {
     const nq = normalize(query);
 
@@ -137,7 +129,6 @@ function renderIndex(query = '') {
         }`;
 }
 
-// Renderiza um hino pelo id (ex: "042")
 function renderHymn(id) {
     const idx = state.hymns.findIndex(h => h.id === id);
     if (idx === -1) {
@@ -158,7 +149,6 @@ function renderHymn(id) {
     const atMin = state.fontLevel <= FONT_MIN;
     const atMax = state.fontLevel >= FONT_MAX;
 
-    // Barra de navegação (reutilizada no topo e no rodapé)
     const nav = (showPos) => `
         <nav class="hymn-nav${showPos ? ' hymn-nav--top' : ''}">
             <div class="nav-left">
@@ -188,7 +178,6 @@ function renderHymn(id) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ─── Tema ─────────────────────────────────────────────────────────────────────
 function applyTheme(t) {
     state.theme = t;
     document.documentElement.setAttribute('data-theme', t);
@@ -200,21 +189,17 @@ function toggleTheme() {
     applyTheme(state.theme === 'dark' ? 'light' : 'dark');
 }
 
-// ─── Tamanho de fonte ─────────────────────────────────────────────────────────
 function applyFont(level) {
     state.fontLevel = Math.max(FONT_MIN, Math.min(FONT_MAX, level));
     const px = FONT_BASE + state.fontLevel * FONT_STEP;
     document.documentElement.style.setProperty('--hymn-font', `${px}px`);
     localStorage.setItem('hinario-font', state.fontLevel);
-    // Atualiza disabled nos botões dinâmicos dentro da página do hino
     document.querySelectorAll('.js-font-dec').forEach(b => { b.disabled = state.fontLevel <= FONT_MIN; });
     document.querySelectorAll('.js-font-inc').forEach(b => { b.disabled = state.fontLevel >= FONT_MAX; });
 }
 
-// ─── Roteador ─────────────────────────────────────────────────────────────────
-// Usa o hash da URL: '#042' → hino 042; '#' ou vazio → índice
 function router() {
-    const hash = window.location.hash.slice(1); // remove o '#'
+    const hash = window.location.hash.slice(1);
     if (hash && hash !== '/') {
         renderHymn(hash);
     } else {
@@ -222,25 +207,20 @@ function router() {
     }
 }
 
-// ─── Busca ────────────────────────────────────────────────────────────────────
 function handleSearch(e) {
     const q = e.target.value.trim();
     state.query = q;
 
-    // Se estiver num hino, volta ao índice sem adicionar entrada no histórico
     if (window.location.hash.length > 1) {
         history.replaceState(null, '', '#');
     }
     renderIndex(q);
 }
 
-// ─── Inicialização ────────────────────────────────────────────────────────────
 async function init() {
-    // Restaura preferências salvas
     applyTheme(localStorage.getItem('hinario-theme') || 'light');
     applyFont(parseInt(localStorage.getItem('hinario-font') || '0', 10));
 
-    // Botão home (logo)
     document.getElementById('btn-home').addEventListener('click', () => {
         state.query = '';
         document.getElementById('search-input').value = '';
@@ -251,13 +231,11 @@ async function init() {
     document.getElementById('btn-theme').addEventListener('click', toggleTheme);
     document.getElementById('search-input').addEventListener('input', handleSearch);
 
-    // Delegação para os botões de fonte (ficam dentro do hino, gerados dinamicamente)
     document.getElementById('app').addEventListener('click', e => {
         if (e.target.classList.contains('js-font-dec')) applyFont(state.fontLevel - 1);
         if (e.target.classList.contains('js-font-inc')) applyFont(state.fontLevel + 1);
     });
 
-    // Navegação pelo hash da URL
     window.addEventListener('hashchange', () => {
         const hash = window.location.hash.slice(1);
         if (!hash || hash === '/') {
@@ -269,7 +247,6 @@ async function init() {
         }
     });
 
-    // Carrega dados
     showLoading('Carregando hinário...');
     try {
         state.hymns = await loadHymns();
