@@ -379,9 +379,6 @@ mark {
         width: 100%;
     }
 
-    /* Sumário ocupa espaço disponível; A− e A+ ficam fixos */
-    .nav-left .btn:first-child { flex: 1; }
-
     /* Anterior e Próximo dividem a linha igualmente */
     .nav-arrows .btn { flex: 1; text-align: center; justify-content: center; }
 
