@@ -4,43 +4,49 @@
 :root {
     --font-size: 16px;
 
-    --bg:          #f7f5ef;
+    --bg:          #fafafa;
     --surface:     #ffffff;
-    --surface-alt: #eeecea;
-    --border:      #d8d5cc;
-    --text:        #1c1a14;
-    --text-muted:  #7a776a;
-    --primary:     #3d6e4e;
-    --primary-h:   #2d5a3e;
+    --surface-alt: #f4f4f4;
+    --border:      #e8e8e8;
+    --text:        #111111;
+    --text-muted:  #999999;
+    --primary:     #111111;
+    --primary-h:   #333333;
     --primary-fg:  #ffffff;
-    --accent:      #b5833a;
-    --chorus-fg:   #7a4e10;
-    --num-fg:      #b8b5a8;
-    --header-bg:   #2d5a3e;
-    --header-fg:   #f0ede4;
-    --mark-bg:     #ffe082;
-    --mark-fg:     #1c1a14;
-    --shadow:      0 1px 4px rgba(0,0,0,.08);
+    --chorus-fg:   #777777;
+    --num-fg:      #cccccc;
+    --header-bg:   #ffffff;
+    --header-fg:   #111111;
+    --header-el-bg:    rgba(0,0,0,.05);
+    --header-el-border:rgba(0,0,0,.11);
+    --header-el-hover: rgba(0,0,0,.09);
+    --header-placeholder: rgba(0,0,0,.33);
+    --mark-bg:     #efefef;
+    --mark-fg:     #111111;
+    --shadow:      0 1px 0 var(--border);
 }
 
 [data-theme="dark"] {
-    --bg:          #141618;
-    --surface:     #1e2124;
-    --surface-alt: #282c30;
-    --border:      #333840;
-    --text:        #dedad0;
-    --text-muted:  #807870;
-    --primary:     #5a9e6e;
-    --primary-h:   #6ab880;
-    --primary-fg:  #ffffff;
-    --accent:      #d4a05a;
-    --chorus-fg:   #d4a05a;
-    --num-fg:      #454038;
-    --header-bg:   #0f1210;
-    --header-fg:   #dedad0;
-    --mark-bg:     #7a5800;
-    --mark-fg:     #fff8e1;
-    --shadow:      0 1px 4px rgba(0,0,0,.35);
+    --bg:          #111111;
+    --surface:     #1a1a1a;
+    --surface-alt: #222222;
+    --border:      #2a2a2a;
+    --text:        #eeeeee;
+    --text-muted:  #666666;
+    --primary:     #eeeeee;
+    --primary-h:   #ffffff;
+    --primary-fg:  #111111;
+    --chorus-fg:   #aaaaaa;
+    --num-fg:      #333333;
+    --header-bg:   #111111;
+    --header-fg:   #eeeeee;
+    --header-el-bg:    rgba(255,255,255,.07);
+    --header-el-border:rgba(255,255,255,.12);
+    --header-el-hover: rgba(255,255,255,.13);
+    --header-placeholder: rgba(255,255,255,.33);
+    --mark-bg:     #2a2a2a;
+    --mark-fg:     #eeeeee;
+    --shadow:      0 1px 0 var(--border);
 }
 
 /* ═══════════════════════════════════════════
@@ -71,7 +77,7 @@ header {
     background: var(--header-bg);
     color: var(--header-fg);
     padding: .6rem 1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    box-shadow: var(--shadow);
 }
 
 .header-top {
@@ -107,8 +113,8 @@ button.logo:hover { opacity: .8; }
 .header-controls { display: flex; gap: .35rem; }
 
 .btn-icon {
-    background: rgba(255,255,255,.12);
-    border: 1px solid rgba(255,255,255,.22);
+    background: var(--header-el-bg);
+    border: 1px solid var(--header-el-border);
     color: var(--header-fg);
     cursor: pointer;
     padding: .28rem .6rem;
@@ -118,7 +124,7 @@ button.logo:hover { opacity: .8; }
     line-height: 1.4;
     transition: background .15s;
 }
-.btn-icon:hover:not(:disabled) { background: rgba(255,255,255,.22); }
+.btn-icon:hover:not(:disabled) { background: var(--header-el-hover); }
 .btn-icon:disabled { opacity: .35; cursor: not-allowed; }
 
 /* Search */
@@ -137,17 +143,17 @@ button.logo:hover { opacity: .8; }
 #search-input {
     width: 100%;
     padding: .45rem .75rem .45rem 2.1rem;
-    background: rgba(255,255,255,.12);
-    border: 1px solid rgba(255,255,255,.18);
+    background: var(--header-el-bg);
+    border: 1px solid var(--header-el-border);
     border-radius: 7px;
     color: var(--header-fg);
     font-family: system-ui, sans-serif;
     font-size: .92rem;
     outline: none;
-    transition: background .15s;
+    transition: background .15s, border-color .15s;
 }
-#search-input::placeholder { color: rgba(255,255,255,.45); }
-#search-input:focus { background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.35); }
+#search-input::placeholder { color: var(--header-placeholder); }
+#search-input:focus { background: var(--surface); border-color: var(--text-muted); }
 #search-input::-webkit-search-cancel-button { display: none; }
 
 /* ═══════════════════════════════════════════
@@ -232,7 +238,7 @@ button.logo:hover { opacity: .8; }
     transition: background .12s;
     font-size: 1rem;
 }
-.hymn-item:hover { background: var(--surface); }
+.hymn-item:hover { background: var(--surface-alt); }
 
 .hymn-num {
     font-family: system-ui, sans-serif;
