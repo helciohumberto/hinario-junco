@@ -1,5 +1,7 @@
 # Hinário Junco
 
+🔗 **[helciohumberto.github.io/hinario-junco](https://helciohumberto.github.io/hinario-junco)**
+
 Um leitor web simples e bonito para os 597 hinos do Hinário Junco. Funciona direto no navegador, sem precisar instalar nada — basta abrir e cantar.
 
 ## O que ele faz
